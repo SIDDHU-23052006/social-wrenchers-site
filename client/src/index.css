@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: 'Outfit', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+
+  /* High-end Light Mode with subtle depth */
+  --background: 210 40% 98%;
+  --foreground: 222 47% 11%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --card-border: 217 33% 92%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+
+  /* Vibrant Startup Accents */
+  --primary: 260 90% 60%; /* Solid Electric Violet */
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 190 95% 45%; /* Deep Cyan */
+  --secondary-foreground: 210 40% 98%;
+
+  --muted: 210 40% 94%;
+  --muted-foreground: 215 16% 47%;
+
+  --accent: 260 90% 96%;
+  --accent-foreground: 260 90% 40%;
+
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+  --ring: 260 90% 60%;
+
+  --radius: 1rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
+    font-family: var(--font-sans);
+    background-image: 
+      radial-gradient(at 0% 0%, hsla(260, 90%, 60%, 0.03) 0, transparent 50%),
+      radial-gradient(at 100% 100%, hsla(190, 95%, 45%, 0.03) 0, transparent 50%);
+    background-attachment: fixed;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply tracking-tight font-bold text-slate-900;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+  }
+  
+  .bg-grid-pattern {
+    background-size: 50px 50px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  }
+  
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-xl border border-slate-200/60 shadow-xl;
+  }
+
+  .neon-border {
+    @apply border-primary/30 shadow-[0_0_15px_rgba(139,92,246,0.1)];
+  }
+
+  .logo-toss-container {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    animation: toss 6s ease-in-out infinite;
+  }
+
+  .logo-face-front, .logo-face-back {
+    backface-visibility: hidden;
+  }
+
+  .logo-face-back {
+    transform: rotateY(180deg);
+  }
+
+  @keyframes toss {
+    0%, 100% { 
+      transform: translateY(0) rotateY(0deg) rotateX(0deg) scale(1); 
+    }
+    25% {
+      transform: translateY(-30px) rotateY(180deg) rotateX(10deg) scale(1.1);
+    }
+    50% { 
+      transform: translateY(0) rotateY(360deg) rotateX(0deg) scale(1);
+    }
+    75% {
+      transform: translateY(-30px) rotateY(540deg) rotateX(-10deg) scale(1.1);
+    }
+  }
+
+  /* Sync brightness with the rotation to simulate lighting */
+  .logo-toss-container .logo-face-front {
+    animation: front-lighting 6s ease-in-out infinite;
+  }
+  .logo-toss-container .logo-face-back {
+    animation: back-lighting 6s ease-in-out infinite;
+  }
+
+  @keyframes front-lighting {
+    0%, 50%, 100% { filter: brightness(1) contrast(1); }
+    25%, 75% { filter: brightness(0.2) contrast(1.2); }
+  }
+
+  @keyframes back-lighting {
+    0%, 50%, 100% { filter: brightness(0.2) contrast(1.2); }
+    25%, 75% { filter: brightness(1) contrast(1); }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+}
+/* Chatbot Animations */
+
+@keyframes breathe {
+  0%,100% { transform: scale(1); opacity: .6; }
+  50% { transform: scale(1.4); opacity: .2; }
+}
+.animate-breathe {
+  animation: breathe 3s ease-in-out infinite;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity:0; }
+  to { transform: translateY(0); opacity:1; }
+}
+.animate-slideUp {
+  animation: slideUp .35s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity:0; transform: translateX(10px);}
+  to { opacity:1; transform: translateX(0);}
+}
+.animate-fadeIn {
+  animation: fadeIn .4s ease;
+}
+/* floating logo */
+@keyframes float {
+  0% { transform: translateY(0px);}
+  50% { transform: translateY(-12px);}
+  100% { transform: translateY(0px);}
+}
+.animate-float {
+  animation: float 2.5s ease-in-out infinite;
+}
+/* 3D logo container */
+.logo-3d {
+  width: 120px;
+  height: 120px;
+  perspective: 1200px;
+}
+
+/* rotating inner */
+.logo-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: logoFlip 2.6s linear infinite;
+}
+
+/* faces */
+.logo-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+}
+
+/* front side */
+.logo-front {
+  transform: rotateY(0deg);
+}
+
+/* back side */
+.logo-back {
+  transform: rotateY(180deg);
+}
+
+/* flip animation */
+@keyframes logoFlip {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+/* rotating ring */
+@keyframes ringSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-ring {
+  animation: ringSpin 6s linear infinite;
+}
+/* animated gradient text */
+@keyframes gradientMove {
+  0% { background-position: 0% }
+  100% { background-position: 200% }
+}
+
+.animate-gradient {
+  animation: gradientMove 6s linear infinite;
+}
+
+/* grid background */
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(to right, rgba(120,120,120,0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(120,120,120,0.08) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+/* logo flip animation */
+.logo-toss-container {
+  perspective: 1200px;
+}
+
+.logo-face-front {
+  backface-visibility: hidden;
+  transform: rotateY(0deg);
+  transition: transform 1s;
+}
+
+.logo-face-back {
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  transition: transform 1s;
+}
+
+.logo-toss-container:hover .logo-face-front {
+  transform: rotateY(180deg);
+}
+
+.logo-toss-container:hover .logo-face-back {
+  transform: rotateY(360deg);
+}
