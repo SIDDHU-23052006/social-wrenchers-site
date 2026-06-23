@@ -27,6 +27,32 @@ export async function registerRoutes(
     }
   });
 
+  /* ===== Reviews Endpoints ===== */
+  app.get(api.reviews.list.path, async (req, res) => {
+    try {
+      const reviewsList = await storage.getReviews();
+      res.json(reviewsList);
+    } catch (err) {
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
+  app.post(api.reviews.create.path, async (req, res) => {
+    try {
+      const input = api.reviews.create.input.parse(req.body);
+      const review = await storage.createReview(input);
+      res.status(201).json(review);
+    } catch (err) {
+      if (err instanceof z.ZodError) {
+        return res.status(400).json({
+          message: err.errors[0].message,
+          field: err.errors[0].path.join("."),
+        });
+      }
+      return res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
   /* ===== NEW AI CHATBOT ROUTE ===== */
   app.use("/api/chat", chatRoute);
 
