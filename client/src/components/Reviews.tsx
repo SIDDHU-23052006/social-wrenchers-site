@@ -45,17 +45,9 @@ export function Reviews() {
   const fallbackReviews = [
     {
       id: 0,
-      name: "Siddharth B.",
+      name: "Senthil Kumar",
       role: "Final Year Student",
       review: "The team at Social Wrenchers turned my abstract requirements into a fully functional, physically built wearable watch with real-time cloud data. Highly recommended for complex IoT hardware developments!",
-      rating: 5,
-      createdAt: new Date().toISOString(),
-    },
-    {
-      id: -1,
-      name: "Anjali Sharma",
-      role: "B.Tech Graduate Client",
-      review: "Outstanding support throughout my project work. They designed the custom hardware housing and configured the Firebase cloud synchronization perfectly. Saved me tons of time and effort!",
       rating: 5,
       createdAt: new Date().toISOString(),
     }

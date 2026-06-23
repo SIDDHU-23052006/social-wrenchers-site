@@ -201,10 +201,10 @@ export function Projects() {
               </p>
               <div className="flex items-center gap-3">
                 <div className="h-8 w-8 rounded-full bg-slate-200 flex items-center justify-center font-bold text-xs text-slate-700 bg-gradient-to-r from-primary/10 to-secondary/10">
-                  SB
+                  SK
                 </div>
                 <div>
-                  <h6 className="font-bold text-xs text-slate-900">Siddharth B.</h6>
+                  <h6 className="font-bold text-xs text-slate-900">Senthil Kumar</h6>
                   <p className="text-[10px] text-slate-400">Final Year CSE Student</p>
                 </div>
               </div>
